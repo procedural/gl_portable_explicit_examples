@@ -1,0 +1,7 @@
+a.out
+build
+CMakeLists.txt.user
+*.sdf
+*.sln
+*.suo
+x64

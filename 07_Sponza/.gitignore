@@ -1,0 +1,8 @@
+a.out
+meshes.o
+build
+CMakeLists.txt.user
+*.sdf
+*.sln
+*.suo
+x64

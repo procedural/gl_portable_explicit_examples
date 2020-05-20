@@ -1,0 +1,5 @@
+project(07_Sponza C)
+cmake_minimum_required(VERSION 2.8)
+add_executable(${PROJECT_NAME} main.c meshes.c ../rei/rei.c)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/../glfw/lib/libglfw.so.3 -lGL -lm)
+execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ../sponza sponza)
