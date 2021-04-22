@@ -297,11 +297,11 @@ void reiCommandMeshSetState(ReiContext * context, ReiMeshState * state) {
   ctx->glDepthFunc(state->depthTestDepthCompareOp);
   state->stencilTestEnable == 1 ? ctx->glEnable(0x0B90) : ctx->glDisable(0x0B90); // GL_STENCIL_TEST
   ctx->glStencilOpSeparate(0x0404, state->stencilTestFrontStencilTestFailOp, state->stencilTestFrontStencilTestPassDepthTestFailOp, state->stencilTestFrontStencilTestPassDepthTestPassOp); // GL_FRONT
-  ctx->glStencilFuncSeparate(0x0404, state->stencilTestFrontCompareOp, state->stencilTestFrontReference, state->stencilTestFrontCompareMask); // GL_FRONT
-  ctx->glStencilMaskSeparate(0x0404, state->stencilTestFrontWriteMask); // GL_FRONT
+  ctx->glStencilFuncSeparate(0x0404, state->stencilTestFrontCompareOp, state->stencilTestFrontAndBackReference, state->stencilTestFrontAndBackCompareMask); // GL_FRONT
+  ctx->glStencilMaskSeparate(0x0404, state->stencilTestFrontAndBackWriteMask); // GL_FRONT
   ctx->glStencilOpSeparate(0x0405, state->stencilTestBackStencilTestFailOp, state->stencilTestBackStencilTestPassDepthTestFailOp, state->stencilTestBackStencilTestPassDepthTestPassOp); // GL_BACK
-  ctx->glStencilFuncSeparate(0x0405, state->stencilTestBackCompareOp, state->stencilTestBackReference, state->stencilTestBackCompareMask); // GL_BACK
-  ctx->glStencilMaskSeparate(0x0405, state->stencilTestBackWriteMask); // GL_BACK
+  ctx->glStencilFuncSeparate(0x0405, state->stencilTestBackCompareOp, state->stencilTestFrontAndBackReference, state->stencilTestFrontAndBackCompareMask); // GL_BACK
+  ctx->glStencilMaskSeparate(0x0405, state->stencilTestFrontAndBackWriteMask); // GL_BACK
   state->blendLogicOpEnable == 1 ? ctx->glEnable(0x0BF2) : ctx->glDisable(0x0BF2); // GL_COLOR_LOGIC_OP
   ctx->glLogicOp(state->blendLogicOp);
   ctx->glBlendColor(state->blendConstants[0], state->blendConstants[1], state->blendConstants[2], state->blendConstants[3]);

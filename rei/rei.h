@@ -186,10 +186,9 @@ void reiCommandClear(ReiContext * context, ReiClearFlags clear, float depthValue
 // Command recording of mesh state and mesh work domain execution
 
 typedef enum ReiCullMode {
-  REI_CULL_MODE_NONE           = 0,
-  REI_CULL_MODE_FRONT          = 0x0404,
-  REI_CULL_MODE_BACK           = 0x0405,
-  REI_CULL_MODE_FRONT_AND_BACK = 0x0408,
+  REI_CULL_MODE_NONE  = 0,
+  REI_CULL_MODE_FRONT = 0x0404,
+  REI_CULL_MODE_BACK  = 0x0405,
 } ReiCullMode;
 
 typedef enum ReiFrontFace {
@@ -249,8 +248,6 @@ typedef enum ReiBlendFactor {
   REI_BLEND_FACTOR_ONE_MINUS_TARGET_ALPHA   = 0x0305,
   REI_BLEND_FACTOR_CONSTANT_COLOR           = 0x8001,
   REI_BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR = 0x8002,
-  REI_BLEND_FACTOR_CONSTANT_ALPHA           = 0x8003,
-  REI_BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA = 0x8004,
   REI_BLEND_FACTOR_SOURCE_ALPHA_SATURATE    = 0x0308,
 } ReiBlendFactor;
 
@@ -282,16 +279,13 @@ typedef struct ReiMeshState {
   ReiStencilOp     stencilTestFrontStencilTestPassDepthTestPassOp;
   ReiStencilOp     stencilTestFrontStencilTestPassDepthTestFailOp;
   ReiCompareOp     stencilTestFrontCompareOp;
-  unsigned         stencilTestFrontCompareMask;
-  unsigned         stencilTestFrontWriteMask;
-  unsigned         stencilTestFrontReference;
   ReiStencilOp     stencilTestBackStencilTestFailOp;
   ReiStencilOp     stencilTestBackStencilTestPassDepthTestPassOp;
   ReiStencilOp     stencilTestBackStencilTestPassDepthTestFailOp;
   ReiCompareOp     stencilTestBackCompareOp;
-  unsigned         stencilTestBackCompareMask;
-  unsigned         stencilTestBackWriteMask;
-  unsigned         stencilTestBackReference;
+  unsigned         stencilTestFrontAndBackCompareMask;
+  unsigned         stencilTestFrontAndBackWriteMask;
+  unsigned         stencilTestFrontAndBackReference;
   ReiBool32        blendLogicOpEnable;
   ReiLogicOp       blendLogicOp;
   float            blendConstants[4];
