@@ -314,7 +314,7 @@ void reiCommandMeshPosition(ReiContext * context, float x, float y, float z, flo
 
 void reiSetProgramEnvironmentValue(ReiContext * context, ReiProgramBinding binding, unsigned index, float x, float y, float z, float w);
 void reiSetProgramLocalValue(ReiContext * context, ReiProgramBinding binding, unsigned index, float x, float y, float z, float w);
-void reiSubmitCommandLists(ReiContext * context, unsigned commandListsCount, ReiHandleCommandList * commandLists);
+void reiSubmitCommandLists(ReiContext * context, unsigned commandListsCount, const ReiHandleCommandList * commandLists);
 
 // Error handling
 

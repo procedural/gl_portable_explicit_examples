@@ -355,7 +355,7 @@ void reiSetProgramLocalValue(ReiContext * context, ReiProgramBinding binding, un
   ctx->glProgramLocalParameter4fARB(binding, index, x, y, z, w);
 }
 
-void reiSubmitCommandLists(ReiContext * context, unsigned commandListsCount, ReiHandleCommandList * commandLists) {
+void reiSubmitCommandLists(ReiContext * context, unsigned commandListsCount, const ReiHandleCommandList * commandLists) {
   const ReiTypeContext * ctx = (ReiTypeContext *)(void *)context;
   unsigned i = 0;
   for (i = 0; i < commandListsCount; i += 1) {
