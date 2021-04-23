@@ -20,8 +20,8 @@ typedef struct ReiTypeContext {
   void (*glBindTexture)(ReiTextureBinding binding, ReiHandleTexture texture);
   void (*glTexParameteri)(ReiTextureBinding binding, unsigned parameter, int value);
   void (*glPixelStorei)(unsigned parameter, int value);
-  void (*glTexImage2D)(ReiTextureBinding binding, int bindingLevel, ReiTextureTexelFormat bindingTexelFormat, int width, int height, int setTo0, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, void * texels);
-  void (*glTexSubImage2D)(ReiTextureBinding binding, int bindingLevel, int bindingX, int bindingY, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, void * texels);
+  void (*glTexImage2D)(ReiTextureBinding binding, int bindingLevel, ReiTextureTexelFormat bindingTexelFormat, int width, int height, int setTo0, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, const void * texels);
+  void (*glTexSubImage2D)(ReiTextureBinding binding, int bindingLevel, int bindingX, int bindingY, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, const void * texels);
   void (*glCopyTexImage2D)(ReiTextureBinding binding, int bindingLevel, ReiTextureTexelFormat bindingTexelFormat, int backbufferX, int backbufferY, int width, int height, int setTo0);
   void (*glCopyTexSubImage2D)(ReiTextureBinding binding, int bindingLevel, int bindingX, int bindingY, int backbufferX, int backbufferY, int width, int height);
   void (*glReadPixels)(int backbufferX, int backbufferY, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, void * outTexels);
@@ -195,7 +195,7 @@ void reiTextureSetStateSampler(ReiContext * context, ReiTextureBinding binding, 
 
 // Texture texels upload and backbuffer readback
 
-void reiTextureDefineAndCopyFromCpu(ReiContext * context, ReiTextureBinding binding, int bindingLevel, ReiTextureTexelFormat bindingTexelFormat, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, int texelsBytesAlignment, void * texels) {
+void reiTextureDefineAndCopyFromCpu(ReiContext * context, ReiTextureBinding binding, int bindingLevel, ReiTextureTexelFormat bindingTexelFormat, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, int texelsBytesAlignment, const void * texels) {
   const ReiTypeContext * ctx = (ReiTypeContext *)(void *)context;
   ctx->glPixelStorei(0x0CF5, texelsBytesAlignment); // GL_UNPACK_ALIGNMENT
   ctx->glTexImage2D(binding, bindingLevel, bindingTexelFormat, width, height, 0, texelsFormat, texelsType, texels);
@@ -206,7 +206,7 @@ void reiTextureDefineAndCopyFromBackbuffer(ReiContext * context, ReiTextureBindi
   ctx->glCopyTexImage2D(binding, bindingLevel, bindingTexelFormat, backbufferX, backbufferY, width, height, 0);
 }
 
-void reiTextureCopyFromCpu(ReiContext * context, ReiTextureBinding binding, int bindingLevel, int bindingX, int bindingY, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, int texelsBytesAlignment, void * texels) {
+void reiTextureCopyFromCpu(ReiContext * context, ReiTextureBinding binding, int bindingLevel, int bindingX, int bindingY, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, int texelsBytesAlignment, const void * texels) {
   const ReiTypeContext * ctx = (ReiTypeContext *)(void *)context;
   ctx->glPixelStorei(0x0CF5, texelsBytesAlignment); // GL_UNPACK_ALIGNMENT
   ctx->glTexSubImage2D(binding, bindingLevel, bindingX, bindingY, width, height, texelsFormat, texelsType, texels);

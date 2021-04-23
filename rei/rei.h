@@ -149,10 +149,10 @@ typedef enum ReiTextureTexelType {
   REI_TEXTURE_TEXEL_TYPE_FLOAT  = 0x1406,
 } ReiTextureTexelType;
 
-void reiTextureDefineAndCopyFromCpu(ReiContext * context, ReiTextureBinding binding, int bindingLevel, ReiTextureTexelFormat bindingTexelFormat, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, int texelsBytesAlignment, void * texels);
+void reiTextureDefineAndCopyFromCpu(ReiContext * context, ReiTextureBinding binding, int bindingLevel, ReiTextureTexelFormat bindingTexelFormat, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, int texelsBytesAlignment, const void * texels);
 void reiTextureDefineAndCopyFromBackbuffer(ReiContext * context, ReiTextureBinding binding, int bindingLevel, ReiTextureTexelFormat bindingTexelFormat, int backbufferX, int backbufferY, int width, int height);
 
-void reiTextureCopyFromCpu(ReiContext * context, ReiTextureBinding binding, int bindingLevel, int bindingX, int bindingY, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, int texelsBytesAlignment, void * texels);
+void reiTextureCopyFromCpu(ReiContext * context, ReiTextureBinding binding, int bindingLevel, int bindingX, int bindingY, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, int texelsBytesAlignment, const void * texels);
 void reiTextureCopyFromBackbuffer(ReiContext * context, ReiTextureBinding binding, int bindingLevel, int bindingX, int bindingY, int backbufferX, int backbufferY, int width, int height);
 
 void reiReadbackToCpuFromBackbuffer(ReiContext * context, int backbufferX, int backbufferY, int width, int height, ReiTextureTexelFormat texelsFormat, ReiTextureTexelType texelsType, int texelsBytesAlignment, void * outTexels);
